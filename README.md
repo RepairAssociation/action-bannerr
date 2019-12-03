@@ -1,10 +1,9 @@
-# Digital Climate Strike
+# Right to Repair Action Banner
 
-This September, millions of us will walk out of our workplaces and homes to join young climate strikers on the streets and demand an end to the age of fossil fuels.
+(Forked and modified from [Fight for the Future's Digital Climate Strike Banner](https://github.com/fightforthefuture/digital-climate-strike))
+which was inspired by the [Fight for the Future Red Alert widget](https://github.com/fightforthefuture/redalert-widget).
 
-This is the source code for the Digital Climate Strike's widget, that will allow anyone with a website to join the digital climate strike in solidarity. [Click here to learn more.](https://globalclimatestrike.net)
-
-This project was inspired by the [Fight for the Future Red Alert widget](https://github.com/fightforthefuture/redalert-widget).
+This is the source code for the activismbanner that will allow anyone with a website to show support for the RIght to Repair bill. [Click here to learn more.](https://repair.org)
 
 ## How to install the widget on your site
 
@@ -12,11 +11,11 @@ This project was inspired by the [Fight for the Future Red Alert widget](https:/
    Add this one line of JavaScript to any page, and you're good to go:
 
 ```html
-<script src="https://assets.digitalclimatestrike.net/widget.js" async></script>
+<script src="https://assets.repair.org/widget.js" async></script>
 ```
 
 ### Option 2 (Self-Hosted):
-    1. Clone the repo with command `git clone https://github.com/fightforthefuture/digital-climate-strike.git`.
+    1. Clone the repo with command `git clone https://github.com/RepairAssociation/action-banner.git`.
     2. Inside the project's folder, run 'npm install && npm run build'. A folder named 'dist' will be generated.
     3. Copy the files index.html and widget.js from dist into your site's folder.
     4. Configure the 'iframeHost' option, as described in the section about `REPAIR_ORG_OPTIONS`.
@@ -24,27 +23,19 @@ This project was inspired by the [Fight for the Future Red Alert widget](https:/
 
 You can change the user experience and do some customization via the `REPAIR_ORG_OPTIONS` [described below](#customization-options). Before adding the widget make sure you have also read the [section below](#important-note-regarding-google-analytics-tracking) about Google Analytics tracking.  
 
-If you have any problems or questions regarding the widget, please [submit an issue](https://github.com/global-climate-strikes/digital-climate-strike/issues).
+If you have any problems or questions regarding the widget, please [submit an issue](https://github.com/RepairAssociation/action-banner/issues).
 
 ## How it works & Demo
 
-When you add [**widget.js**](https://github.com/global-climate-strikes/digital-climate-strike/blob/master/static/widget.js) to your site it will show a footer banner ([demo](https://assets.digitalclimatestrike.net/demo.html)) informing visitors that your site is supporting the Global Climate Strike and directs them to also join the strike:
+When you add [**widget.js**](https://github.com/RepairAssociation/action-banner/blob/master/static/widget.js) to your site it will show a footer banner ([demo](https://assets.digitalclimatestrike.net/demo.html)) informing visitors that your site is supporting the Right to Repair and directs them to take action in their state:
 
-![A screenshot of the Digital Climate Strike footer widget](https://digital.globalclimatestrike.net/wp-content/uploads/sites/71/2019/08/DCS_Mockup_Banner2.png)
-
-Then at midnight on September 20th for 24 hours, the banner will expand to be full screen ([demo](https://assets.digitalclimatestrike.net/demo.html?fullPage)), showing an unavoidable message that your site is joining the Global #ClimateStrike for the day, directing them to join the Global Climate Strike movement:
-
-![A screenshot of the Digital Climate Strike full page widget](https://digital.globalclimatestrike.net/wp-content/uploads/sites/71/2019/08/DCS_Mockup_Full2.png) 
-
-For those who cannot shut down their website for the day, a closable overlay option can also be configured ([demo](https://assets.digitalclimatestrike.net/demo.html?fullPage&showCloseButton)):
-
-![A screenshot of the Digital Climate Strike full page widget with close button](https://digital.globalclimatestrike.net/wp-content/uploads/sites/71/2019/08/DCS_Mockup_Partial2.png)
+![A screenshot of the Action Banner footer widget](https://cdn-std.droplr.net/files/acc_465612/0R4tFj)
 
 You can demo the widget in different languages by adding a 'language' parameter to the URL. ([Example](https://assets.digitalclimatestrike.net/demo.html?fullPage&language=de)) 
 
-The widget is designed to appear once per user, per device, per day, but can be configured to display at a different interval. If you'd like to force it to show up on your page for testing, reload the page with `#ALWAYS_SHOW_DIGITAL_CLIMATE_STRIKE` at the end of the URL.
+The widget is designed to appear once per user, per device, per day, but can be configured to display at a different interval. If you'd like to force it to show up on your page for testing, reload the page with `#ALWAYS_SHOW_REPAIR_ORG` at the end of the URL.
 
-Please take a look at [**widget.js**](https://github.com/global-climate-strikes/digital-climate-strike/blob/master/static/widget.js) if you want to see exactly what you're embedding on your page.
+Please take a look at [**widget.js**](https://github.com/RepairAssociation/action-banner/blob/master/static/widget.js) if you want to see exactly what you're embedding on your page.
 
 The widget is compatible with Firefox, Chrome (desktop and mobile), Safari (desktop and mobile), Microsoft Edge, and Internet Explorer 11.
 
@@ -122,11 +113,11 @@ If you define an object called `REPAIR_ORG_OPTIONS` before including the widget 
     fullPageDisplayStartDate: new Date(2019, 8, 20), //@ type {Date object}
   };
 </script>
-<script src="https://assets.digitalclimatestrike.net/widget.js" async></script>
+<script src="https://assets.repair.org/widget.js" async></script>
 ```
 ## Important note regarding Google Analytics tracking
 
-As you can see in the `REPAIR_ORG_OPTIONS` above, Google Analytics is configured by default to post events when the widget is shown and when any of the buttons are clicked. See [**index.js**](https://github.com/fightforthefuture/digital-climate-strike/blob/master/src/index.js) for more details. The reasons for this are outlined in Issue [#76](https://github.com/fightforthefuture/digital-climate-strike/issues/76). If you would like to disable this please add the widget to your site with the following configuration: 
+As you can see in the `REPAIR_ORG_OPTIONS` above, Google Analytics is configured by default to post events when the widget is shown and when any of the buttons are clicked. See [**index.js**](https://github.com/RepairAssociation/action-banner/blob/master/src/index.js) for more details. The reasons for this are outlined in Issue [#76](https://github.com/RepairAssociation/action-banner/issues/76). If you would like to disable this please add the widget to your site with the following configuration: 
 
 ```html
 <script type="text/javascript">

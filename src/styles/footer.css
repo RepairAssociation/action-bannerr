@@ -10,6 +10,7 @@
   position: fixed;
   right: 0;
   width: 100%;
+  color: white;
 }
 
 .dcs-footer__close {
@@ -39,7 +40,7 @@
 }
 
 .dcs-footer__body {
-  color: var(--grey);
+  color: white;
   font: normal .875rem/1rem 'Katwijk Bold', Courier, sans-serif;
   max-width: 26rem;
 }
@@ -48,7 +49,38 @@
   margin: 1rem 0 0;
 }
 
+.dcs-footer__privacy-link {
+  margin-top: .5rem;
+  text-align: center;
+}
+
+.dcs-footer__privacy-link a {
+  color: #e0e0e0 !important;
+  font-size: .8rem;
+}
+
 /* Breakpoint */
+@media(max-width: 899px) {
+  .dcs-footer__logo_top {
+    display: block !important;
+    width: 70px;
+    margin-bottom: 14px;
+  }
+
+  .dcs-footer__logo {
+    display: none;
+  }
+
+  .dcs-footer__main {
+    flex: 0 0 100%;
+    margin: 0;
+  }
+
+  .dcs-button {
+    display: block;
+    margin: 0 auto 12px;
+  }
+}
 
 @media(min-width: 900px) {
 

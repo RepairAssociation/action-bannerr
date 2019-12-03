@@ -1,22 +1,20 @@
 (function() {
   'use strict';
-  var DOM_ID = 'DIGITAL_CLIMATE_STRIKE';
-  var CLOSED_COOKIE = '_DIGITAL_CLIMATE_STRIKE_WIDGET_CLOSED_';
+  var DOM_ID = 'REPAIR_ORG';
+  var CLOSED_COOKIE = '_REPAIR_ORG_WIDGET_CLOSED_';
   var NOW = new Date().getTime();
   var MS_PER_DAY = 86400000;
 
   // user-configurable options
-  var options = window.DIGITAL_CLIMATE_STRIKE_OPTIONS || {};
-  var iframeHost = options.iframeHost !== undefined ? options.iframeHost : 'https://assets.digitalclimatestrike.net';
+  var options = window.REPAIR_ORG_OPTIONS || {};
+  var iframeHost = 'https://assets.repair.org';
   var websiteName = options.websiteName || null;
-  var footerDisplayStartDate = options.footerDisplayStartDate || new Date(2019, 7, 1);       // August 1st, 2019 - arbitrary date in the past
-  var fullPageDisplayStartDate = options.fullPageDisplayStartDate || new Date(2019, 8, 20);  // September 20th, 2019
-  var forceFullPageWidget = !!options.forceFullPageWidget;
+  var forceFullPageWidget = false; //!!options.forceFullPageWidget;
   var cookieExpirationDays = parseFloat(options.cookieExpirationDays || 1);
-  var alwaysShowWidget = !!(options.alwaysShowWidget || window.location.hash.indexOf('ALWAYS_SHOW_DIGITAL_CLIMATE_STRIKE') !== -1);
+  var alwaysShowWidget = true;
   var disableGoogleAnalytics = !!options.disableGoogleAnalytics;
   var showCloseButtonOnFullPageWidget = !!options.showCloseButtonOnFullPageWidget;
-  var language = getLanguage();
+  var language = 'en';
 
   function getIframeSrc() {
     var src = iframeHost;
@@ -151,7 +149,7 @@
   }
 
   function receiveMessage(event) {
-    if (!event.data.DIGITAL_CLIMATE_STRIKE) return;
+    if (!event.data.REPAIR_ORG) return;
     if (event.origin.lastIndexOf(iframeHost, 0) !== 0) return;
 
     switch (event.data.action) {
@@ -189,7 +187,7 @@
 
     var iFrameHeight = getIframeHeight();
 
-    injectCSS('DIGITAL_STRIKE_CSS',
+    injectCSS('REPAIR_ORG_CSS',
       '#' + DOM_ID + ' { position: fixed; right: 0; left: 0; bottom: 0px; width: 100%; height: ' + iFrameHeight + '; z-index: 20000; -webkit-overflow-scrolling: touch; overflow: hidden; } ' +
       '#' + DOM_ID + ' iframe { width: 100%; height: 100%; }'
     );

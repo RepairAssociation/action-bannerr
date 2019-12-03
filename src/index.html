@@ -18,7 +18,7 @@
             <h1 class="dcs-sr-only">{{ title }}</h1>
             <a class="dcs-full-page__logo" href="#">
               <img
-                src="images/dcs-logo.png"
+                src="images/repair.png"
                 class="dcs-logo--med"
                 alt="{{ logo_alt }}"
               />
@@ -45,10 +45,17 @@
       </div>
     </main>
     <footer class="dcs-footer" role="contentinfo">
+      <a class="dcs-footer__logo_top hidden" href="#">
+        <img
+            src="images/repair.png"
+            alt="{{ logo_alt }}"
+            class="dcs-logo"
+        />
+      </a>
       <div class="dcs-footer__container">
         <a class="dcs-footer__logo" href="#">
           <img
-            src="images/dcs-logo.png"
+            src="images/repair.png"
             alt="{{ logo_alt }}"
             class="dcs-logo"
           />
@@ -62,6 +69,7 @@
             <button type="button" class="dcs-button">
               {{{ ready }}}
             </button>
+            <p class="small dcs-footer__privacy-link"><a href="https://repair.org/privacy-policy" target="_blank">Privacy Policy</a></p>
           </div>
           {{/with}}
         </div>

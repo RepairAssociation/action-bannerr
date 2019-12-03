@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config webpack.dev.js --host 0.0.0.0",
+    "watch": "webpack --watch --config webpack.prod.js",
     "build": "webpack --config webpack.prod.js",
     "lint": "./node_modules/.bin/eslint src/index.js"
   },

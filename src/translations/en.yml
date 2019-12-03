@@ -4,17 +4,17 @@ full_page:
       <span class="dcs-website-name__prefix">The</span>
       <span class="dcs-website-name"></span>
       <span class="dcs-website-name__website">website</span>
-      is<br />
-      joining the Global<br />
-      #ClimateStrike today.<br />
-      Will you?'
+      <br />
+      supports your Right to Repair<br />
+      <br />
+      Will you join us?'
   ready:  'I&rsquo;m ready ➔'
   footer: 'You’ll be able to access this website tomorrow, <time id="dcs-tomorrow-date" datetime="2019-09-21">September 21</time>.'
 footer:
-  body: 'Our website will join the Global #ClimateStrike on <time id="dcs-strike-date" datetime="2019-09-20">September 20</time>. Will you?'
+  body: 'This website supports your Right to Repair<br>Show your support in our fight to let you fix the stuff you own.'
   ready: 'Yes, I&rsquo;m in. ➔'
 
-title: 'Digital Climate Strike'
-logo_alt: 'Digital Climate Strike logo'
+title: 'Right to Repair'
+logo_alt: 'Right to Repair logo'
 close_overlay: 'Close overlay'
 close_banner: 'Close banner'

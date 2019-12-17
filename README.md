@@ -31,7 +31,7 @@ When you add [**widget.js**](https://github.com/RepairAssociation/action-banner/
 
 ![A screenshot of the Action Banner footer widget](https://cdn-std.droplr.net/files/acc_465612/0R4tFj)
 
-You can demo the widget in different languages by adding a 'language' parameter to the URL. ([Example](https://assets.digitalclimatestrike.net/demo.html?fullPage&language=de)) 
+You can demo the widget in different languages by adding a 'language' parameter to the URL. ([Example](https://assets.repair.org/demo.html?fullPage&language=de)) 
 
 The widget is designed to appear once per user, per device, per day, but can be configured to display at a different interval. If you'd like to force it to show up on your page for testing, reload the page with `#ALWAYS_SHOW_REPAIR_ORG` at the end of the URL.
 

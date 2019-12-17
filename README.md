@@ -27,7 +27,7 @@ If you have any problems or questions regarding the widget, please [submit an is
 
 ## How it works & Demo
 
-When you add [**widget.js**](https://github.com/RepairAssociation/action-banner/blob/master/static/widget.js) to your site it will show a footer banner ([demo](https://assets.digitalclimatestrike.net/demo.html)) informing visitors that your site is supporting the Right to Repair and directs them to take action in their state:
+When you add [**widget.js**](https://github.com/RepairAssociation/action-banner/blob/master/static/widget.js) to your site it will show a footer banner ([demo](https://assets.repair.org/demo.html)) informing visitors that your site is supporting the Right to Repair and directs them to take action in their state:
 
 ![A screenshot of the Action Banner footer widget](https://cdn-std.droplr.net/files/acc_465612/0R4tFj)
 

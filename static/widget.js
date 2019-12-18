@@ -74,6 +74,7 @@
     iframe.allowTransparency = true;
     iframe.onload = function () {
       iframe.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+      iframe.setAttribute('style', 'width: 100%;');
       wrapper.setAttribute('style', 'height:' + iframe.contentWindow.document.body.scrollHeight + 'px');
     };
     wrapper.appendChild(iframe);

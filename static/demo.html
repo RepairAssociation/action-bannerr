@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Digital Climate Strike Test Page</title>
+  <title>Repair.org Test Page</title>
   <style type="text/css">
     html, body, iframe {
       width: 100%;
@@ -21,12 +21,13 @@
     var language = urlParams.get('language') ? urlParams.get('language') : 'en';
 
     var REPAIR_ORG_OPTIONS = {
+      disableGeoIP: false,
       alwaysShowWidget: true,
       websiteName: 'Demo',
       language: 'en'
     };
   </script>
-  <script src="https://assets.repair.org/widget.js" async></script>
+  <script src="./widget.js"></script>
 </head>
 <body>
 <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</h1>

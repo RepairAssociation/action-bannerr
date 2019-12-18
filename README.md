@@ -103,14 +103,7 @@ If you define an object called `REPAIR_ORG_OPTIONS` before including the widget 
      * Note: the month is one integer less than the number of the month. E.g. 8 is September, not August.
      * Defaults to new Date(2019, 7, 1) (August 1st, 2019).
      */
-    footerDisplayStartDate: new Date(), //@ type {Date object}
-    
-    /**
-     * The date when the full page widget should showing on your web site for 24 hours. 
-     * Note: the month is one integer less than the number of the month. E.g. 8 is September, not August.
-     * Defaults to new Date(2019, 8, 20) (September 20th, 2019)
-     */
-    fullPageDisplayStartDate: new Date(2019, 8, 20), //@ type {Date object}
+    footerDisplayStartDate: new Date() //@ type {Date object}
   };
 </script>
 <script src="https://assets.repair.org/widget.js" async></script>

@@ -1,7 +1,7 @@
 {
-  "name": "digital-climate-strike-widget",
+  "name": "action-banner",
   "version": "1.0.0",
-  "description": "Digital Climate Strike widget so anyone can join the digital climate strike",
+  "description": "Right to repair action banner",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config webpack.dev.js --host 0.0.0.0",
@@ -11,13 +11,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/global-climate-strikes/digital-climate-strike.git"
+    "url": "git+https://github.com/RepairAssociation/action-banner.git"
   },
   "author": "Global Climate Strike",
   "bugs": {
-    "url": "https://github.com/global-climate-strikes/digital-climate-strike/issues"
+    "url": "https://github.com/RepairAssociation/action-banner/issues"
   },
-  "homepage": "https://github.com/global-climate-strikes/digital-climate-strike#readme",
+  "homepage": "https://github.com/RepairAssociation/action-banner#readme",
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",

@@ -1,28 +1,54 @@
-(function() {
+(function () {
   'use strict';
   var DOM_ID = 'REPAIR_ORG';
   var CLOSED_COOKIE = '_REPAIR_ORG_WIDGET_CLOSED_';
-  var NOW = new Date().getTime();
   var MS_PER_DAY = 86400000;
+  var states = [];
 
   // user-configurable options
   var options = window.REPAIR_ORG_OPTIONS || {};
-  var iframeHost = 'https://assets.repair.org';
+  var iframeHost = 'http://localhost:63342'; // 'https://assets.repair.org';
   var websiteName = options.websiteName || null;
+  var disableGeoIP = !!options.disableGeoIP;
   var forceFullPageWidget = false; //!!options.forceFullPageWidget;
   var cookieExpirationDays = parseFloat(options.cookieExpirationDays || 1);
-  var alwaysShowWidget = true;
+  var alwaysShowWidget = !!options.alwaysShowWidget;
   var disableGoogleAnalytics = !!options.disableGoogleAnalytics;
   var showCloseButtonOnFullPageWidget = !!options.showCloseButtonOnFullPageWidget;
   var language = 'en';
+  var currentState = null;
+  var buttonUrl = 'https://repair.org/join';
 
-  function getIframeSrc() {
+  function makeStateRequest (callback, error) {
+    if (disableGeoIP) {
+      callback({});
+      return;
+    }
+    let httpRequest = new XMLHttpRequest();
+
+    if (!httpRequest) {
+      alert('Giving up :( Cannot create an XMLHTTP instance');
+      return false;
+    }
+    httpRequest.onreadystatechange = () => {
+      if (httpRequest.readyState === XMLHttpRequest.DONE) {
+        if (httpRequest.status === 200) {
+          callback(JSON.parse(httpRequest.responseText));
+        } else {
+          error(httpRequest);
+        }
+      }
+    };
+    httpRequest.open('GET', 'https://us-central1-callpower-repair-1548316784218.cloudfunctions.net/geoip-go');
+    httpRequest.send();
+  }
+
+  function getIframeSrc () {
     var src = iframeHost;
-    src += language === 'en' ? '/index.html?' : '/index-' + language + '.html?';
+    src += '/action-banner/dist/index.html?'; // 'index.html?';
 
     var urlParams = [
       ['hostname', window.location.host],
-      ['fullPageDisplayStartDate', fullPageDisplayStartDate.toISOString()],
       ['language', language]
     ];
 
@@ -31,88 +57,48 @@
     disableGoogleAnalytics && urlParams.push(['googleAnalytics', 'false']);
     websiteName && urlParams.push(['websiteName', encodeURI(websiteName)]);
 
-    var params = urlParams.map(function(el) {
+    var params = urlParams.map(function (el) {
       return el.join('=');
     });
 
     return src + params.join('&');
   }
 
-  function createIframe() {
+  function createIframe () {
     var wrapper = document.createElement('div');
-    wrapper.id = DOM_ID;
     var iframe = document.createElement('iframe');
+
+    wrapper.id = DOM_ID;
     iframe.src = getIframeSrc();
     iframe.frameBorder = 0;
     iframe.allowTransparency = true;
+    iframe.onload = function () {
+      iframe.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+      wrapper.setAttribute('style', 'height:' + iframe.contentWindow.document.body.scrollHeight + 'px');
+    };
     wrapper.appendChild(iframe);
     document.body.appendChild(wrapper);
     iframe.contentWindow.focus();
-    return wrapper;
+
+    return iframe;
   }
 
-  function getLanguage() {
-    var language = 'en';
-
-    // Spanish is specified or no language is set and browser is set to spanish
-    if (options.language === 'es' || (!options.language && navigator && navigator.language.match(/^es/))) {
-      language = 'es';
-    }
-
-    // German is specified or no language is set and browser is set to German
-    if (options.language === 'de' || (!options.language && navigator && navigator.language.match(/^de/))) {
-      language = 'de';
-    }
-
-    // Czech is specified or no language is set and browser is set to German
-    if (options.language === 'cs' || (!options.language && navigator && navigator.language.match(/^cs/))) {
-      language = 'cs';
-    }
-
-    // French is specified or no language is set and browser is set to French
-    if (options.language === 'fr' || (!options.language && navigator && navigator.language.match(/^fr/))) {
-      language = 'fr';
-    }
-
-    // Dutch is specified or no language is set and browser is set to Dutch
-    if (options.language === 'nl' || (!options.language && navigator && navigator.language.match(/^nl/))) {
-      language = 'nl';
-    }
-
-    // Turkish is specified or no language is set and browser is set to Turkish
-    if (options.language === 'tr' || (!options.language && navigator && navigator.language.match(/^tr/))) {
-      language = 'tr';
-    }
-
-    // Portuguese is specified or no language is set and browser is set to Portuguese
-    if (options.language === 'pt' || (!options.language && navigator && navigator.language.match(/^pt/))) {
-      language = 'pt';
-    }
-
-    // Italian is specified or no language is set and browser is set to Italian
-    if (options.language === 'it' || (!options.language && navigator && navigator.language.match(/^it/))) {
-      language = 'it';
-    }
-
-    return language;
-  }
-
-  function maximize() {
+  function maximize () {
     document.getElementById(DOM_ID).style.width = '100%';
     document.getElementById(DOM_ID).style.height = '100%';
   }
 
-  function closeWindow() {
+  function closeWindow () {
     document.getElementById(DOM_ID).remove();
     window.removeEventListener('message', receiveMessage);
     setCookie(CLOSED_COOKIE, 'true', cookieExpirationDays);
   }
 
-  function navigateToLink(linkUrl) {
+  function navigateToLink (linkUrl) {
     document.location = linkUrl;
   }
 
-  function injectCSS(id, css) {
+  function injectCSS (id, css) {
     var style = document.createElement('style');
     style.type = 'text/css';
     style.id = id;
@@ -125,20 +111,20 @@
     document.head.appendChild(style);
   }
 
-  function setCookie(name, value, expirationDays) {
+  function setCookie (name, value, expirationDays) {
     var d = new Date();
-    d.setTime(d.getTime()+(expirationDays * MS_PER_DAY));
+    d.setTime(d.getTime() + (expirationDays * MS_PER_DAY));
 
-    var expires = 'expires='+d.toGMTString();
+    var expires = 'expires=' + d.toGMTString();
     document.cookie = name + '=' + value + '; ' + expires + '; path=/';
   }
 
-  function getCookie(cookieName) {
+  function getCookie (cookieName) {
     var name = cookieName + '=';
     var ca = document.cookie.split(';');
     var c;
 
-    for(var i = 0; i < ca.length; i++) {
+    for (var i = 0; i < ca.length; i++) {
       c = ca[i].trim();
       if (c.indexOf(name) == 0) {
         return c.substring(name.length, c.length);
@@ -148,69 +134,76 @@
     return '';
   }
 
-  function receiveMessage(event) {
-    if (!event.data.REPAIR_ORG) return;
-    if (event.origin.lastIndexOf(iframeHost, 0) !== 0) return;
+  function receiveMessage (event) {
+    console.log(event);
+    if (!event.data.REPAIR_ORG) {
+      return;
+    }
+    if (event.origin.lastIndexOf(iframeHost, 0) !== 0) {
+      return;
+    }
 
     switch (event.data.action) {
       case 'maximize':
         return maximize();
       case 'closeButtonClicked':
         return closeWindow();
+      case 'actionClicked':
+        console.log(buttonUrl);
+        return navigateToLink(buttonUrl);
       case 'buttonClicked':
-        if (event.data.linkUrl.lastIndexOf('http', 0) !== 0) return;
-        return navigateToLink(event.data.linkUrl);
+        return navigateToLink(buttonUrl);
     }
   }
 
   /**
-   * There are a few circumstances when the iFrame should not be shown:
-   * 1. When the CLOSED_COOKIE has been set on that device
-   * 2. We haven't reached either display start date
-   * 3. We're past the date to display the full screen widget.
-   * 4. We haven't set alwaysShowWidget to be true in the config.
+   * There are a few circumstances when the iFrame should be shown:
+   * 1. When the CLOSED_COOKIE has NOT been set on that device
+   * 2. The alwaysShowWidget is true in the config.
+   * 3. We have enabled the banner for that state.
    */
-  function iFrameShouldNotBeShown() {
-    if (alwaysShowWidget) return false;
-
-    return (footerDisplayStartDate.getTime() > NOW && fullPageDisplayStartDate.getTime() > NOW)
-      || new Date(fullPageDisplayStartDate.getTime() + MS_PER_DAY) < NOW
-      || !!getCookie(CLOSED_COOKIE);
+  function shouldShowBanner () {
+    return alwaysShowWidget || states.indexOf(currentState) !== -1;
   }
 
-  function initializeInterface() {
-    if (iFrameShouldNotBeShown()) {
+  function initializeInterface () {
+    if (!!getCookie(CLOSED_COOKIE)) {
       return;
     }
 
-    createIframe();
+    makeStateRequest((response) => {
+      let state = response.State;
+      currentState = response.region;
 
-    var iFrameHeight = getIframeHeight();
+      if (!shouldShowBanner()) {
+        return;
+      }
 
-    injectCSS('REPAIR_ORG_CSS',
-      '#' + DOM_ID + ' { position: fixed; right: 0; left: 0; bottom: 0px; width: 100%; height: ' + iFrameHeight + '; z-index: 20000; -webkit-overflow-scrolling: touch; overflow: hidden; } ' +
-      '#' + DOM_ID + ' iframe { width: 100%; height: 100%; }'
-    );
+      createIframe();
 
-    // listen for messages from iframe
-    window.addEventListener('message', receiveMessage);
+      injectCSS('REPAIR_ORG_CSS',
+        '#' + DOM_ID + ' { position: fixed; right: 0; left: 0; bottom: 0px; width: 100%; z-index: 20000; -webkit-overflow-scrolling: touch; overflow: hidden; } ' //+
+        //'#' + DOM_ID + ' iframe { width: 100%; height: 100%; }'
+      );
 
-    document.removeEventListener('DOMContentLoaded', initializeInterface);
-  }
+      // listen for messages from iframe
+      window.addEventListener('message', receiveMessage);
 
-  function getIframeHeight() {
+      document.removeEventListener('DOMContentLoaded', initializeInterface);
 
-    var isProbablyMobile = window.innerWidth < 600;
-
-    if (isProbablyMobile) {
-      return '200px';
-    } else {
-      return '145px';
-    }
+      if (!state) {
+        buttonUrl = 'https://repair.org/join';
+      } else {
+        buttonUrl = `https://${state.toLowerCase().replace(' ', '')}.repair.org/`;
+      }
+      buttonUrl += '?utm_campaign=action_banner';
+    }, (err) => {
+      console.error(err);
+    });
   }
 
   // Wait for DOM content to load.
-  switch(document.readyState) {
+  switch (document.readyState) {
     case 'complete':
     case 'loaded':
     case 'interactive':

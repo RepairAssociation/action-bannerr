@@ -1,58 +1,57 @@
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const HtmlWebPackPlugin = require('html-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const cloneDeep = require('lodash/cloneDeep')
-const fs = require('fs')
-const yaml = require('js-yaml')
-const path = require('path')
-const handlebars = require('handlebars')
-const showdown = require('showdown')
-const md = new showdown.Converter()
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const cloneDeep = require('lodash/cloneDeep');
+const fs = require('fs');
+const yaml = require('js-yaml');
+const path = require('path');
+const handlebars = require('handlebars');
+const showdown = require('showdown');
+const webpack = require('webpack');
+const md = new showdown.Converter();
 
-
-function formatStrings(data, isMarkdown=false) {
-  let parsedData = cloneDeep(data)
+function formatStrings (data, isMarkdown = false) {
+  let parsedData = cloneDeep(data);
 
   if (Array.isArray(data)) {
-    parsedData = data.map(formatStrings)
+    parsedData = data.map(formatStrings);
   }
   else if (typeof(data) === 'object') {
     for (let key of Object.keys(data)) {
       if (data[key]) {
-        parsedData[key] = formatStrings(data[key], key.match(/_html$/))
+        parsedData[key] = formatStrings(data[key], key.match(/_html$/));
       }
     }
   }
   else if (isMarkdown) {
-    parsedData = md.makeHtml(data)
+    parsedData = md.makeHtml(data);
   }
 
-  return parsedData
+  return parsedData;
 }
 
-function loadStrings(languageCode) {
-  const stringsFile = path.resolve(__dirname, 'src', 'translations', `${languageCode}.yml`)
-  const strings = yaml.safeLoad(fs.readFileSync(stringsFile, 'utf8'))
-  return formatStrings(strings)
+function loadStrings (languageCode) {
+  const stringsFile = path.resolve(__dirname, 'src', 'translations', `${languageCode}.yml`);
+  const strings = yaml.safeLoad(fs.readFileSync(stringsFile, 'utf8'));
+  return formatStrings(strings);
 }
 
-function HandlebarsPlugin(options) {
+function HandlebarsPlugin (options) {
   options = options || {};
   this.template = options.template;
 }
 
-HandlebarsPlugin.prototype.apply = function(compiler) {
+HandlebarsPlugin.prototype.apply = function (compiler) {
   compiler.hooks.compilation.tap('HandlebarsPlugin', function (compilation) {
     compilation.hooks.htmlWebpackPluginBeforeHtmlProcessing.tapAsync('HandlebarsPlugin', function (data, callback) {
-      const template = handlebars.compile(data.html)
-      const strings = loadStrings(data.plugin.options.language)
-      data.html = template(strings)
-      callback(null, data)
+      const template = handlebars.compile(data.html);
+      const strings = loadStrings(data.plugin.options.language);
+      data.html = template(strings);
+      callback(null, data);
     });
   });
-}
-
+};
 
 module.exports = {
   entry: './src/index.js',
@@ -126,6 +125,11 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
     new CleanWebpackPlugin(),
     new HtmlWebPackPlugin({
       template: './src/index.html',
@@ -181,7 +185,7 @@ module.exports = {
       filename: 'index-it.html'
     }),
     new CopyPlugin([
-      { from: 'static', to: '' }
+      {from: 'static', to: ''}
     ]),
     new MiniCssExtractPlugin({
       filename: 'app.[hash].css',

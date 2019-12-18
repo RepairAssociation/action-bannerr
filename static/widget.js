@@ -1,13 +1,14 @@
 (function () {
   'use strict';
   var DOM_ID = 'REPAIR_ORG';
+  var IFRAME_ID = 'REPAIR_ORG_IFRAME';
   var CLOSED_COOKIE = '_REPAIR_ORG_WIDGET_CLOSED_';
   var MS_PER_DAY = 86400000;
   var states = [];
 
   // user-configurable options
   var options = window.REPAIR_ORG_OPTIONS || {};
-  var iframeHost = 'http://localhost:63342'; // 'https://assets.repair.org';
+  var iframeHost = 'https://assets.repair.org'; //'http://localhost:63342'; // 'https://assets.repair.org';
   var websiteName = options.websiteName || null;
   var disableGeoIP = !!options.disableGeoIP;
   var forceFullPageWidget = false; //!!options.forceFullPageWidget;
@@ -45,7 +46,7 @@
 
   function getIframeSrc () {
     var src = iframeHost;
-    src += '/action-banner/dist/index.html?'; // 'index.html?';
+    src += '/index.html?'; //'/action-banner/dist/index.html?';
 
     var urlParams = [
       ['hostname', window.location.host],
@@ -69,13 +70,15 @@
     var iframe = document.createElement('iframe');
 
     wrapper.id = DOM_ID;
+    iframe.id = IFRAME_ID;
     iframe.src = getIframeSrc();
     iframe.frameBorder = 0;
     iframe.allowTransparency = true;
     iframe.onload = function () {
-      iframe.height = iframe.contentWindow.document.body.scrollHeight + 'px';
-      iframe.setAttribute('style', 'width: 100%;');
-      wrapper.setAttribute('style', 'height:' + iframe.contentWindow.document.body.scrollHeight + 'px');
+      window.parent.postMessage({
+        action: 'resize',
+        REPAIR_ORG: true
+      }, '*');
     };
     wrapper.appendChild(iframe);
     document.body.appendChild(wrapper);
@@ -136,7 +139,6 @@
   }
 
   function receiveMessage (event) {
-    console.log(event);
     if (!event.data.REPAIR_ORG) {
       return;
     }
@@ -145,6 +147,13 @@
     }
 
     switch (event.data.action) {
+      case 'resize':
+        var iframe = document.getElementById(IFRAME_ID);
+        var wrapper = document.getElementById(DOM_ID);
+        iframe.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+        iframe.setAttribute('style', 'width: 100%;');
+        wrapper.setAttribute('style', 'height:' + iframe.contentWindow.document.body.scrollHeight + 'px');
+        return;
       case 'maximize':
         return maximize();
       case 'closeButtonClicked':

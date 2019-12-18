@@ -6,44 +6,6 @@
     <title>{{ title }}</title>
   </head>
   <body>
-    <main class="dcs-full-page" role="main">
-      <div class="dcs-full-page__container">
-        <div class="dcs-full-page__close">
-          <button type="button" class="dcs-close" title="{{ close_overlay }}">
-            <span class="dcs-sr-only">{{ close_overlay }}</span>
-          </button>
-        </div>
-        <div class="dcs-full-page__main">
-          <div class="dcs-full-page__details">
-            <h1 class="dcs-sr-only">{{ title }}</h1>
-            <a class="dcs-full-page__logo" href="#">
-              <img
-                src="images/repair.png"
-                class="dcs-logo--med"
-                alt="{{ logo_alt }}"
-              />
-            </a>
-            {{#with full_page}}
-            <div class="dcs-full-page__body">
-              <p>
-                {{{ body }}}
-              </p>
-              <div class="dcs-full-page__action">
-                <button type="button" class="dcs-button">
-                  {{{ ready }}}
-                </button>
-              </div>
-            </div>
-            <div class="dcs-full-page__footer">
-              <small>
-                {{{ footer }}}
-              </small>
-            </div>
-            {{/with}}
-          </div>
-        </div>
-      </div>
-    </main>
     <footer class="dcs-footer" role="contentinfo">
       <a class="dcs-footer__logo_top hidden" href="#">
         <img

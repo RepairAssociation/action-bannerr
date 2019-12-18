@@ -52,27 +52,11 @@ If you define an object called `REPAIR_ORG_OPTIONS` before including the widget 
      * one day.
      */
     cookieExpirationDays: 1, // @type {number}
-    
-    /**
-     * Set the language of the widget. We currently support:
-     * 'en': English
-     * 'de': German
-     * 'es': Spanish
-     * 'cs': Czech
-     * 'fr': French
-     * 'nl': Dutch
-     * 'tr': Turkish
-     * 'pt': Portuguese
-     * 'it': Italian
-     * Defaults to null, which will obey the navigator.language setting of the 
-     * viewer's browser.
-     */
-     language: null, // @type {string}
      
     /**
-     * Allow you to override the iFrame hostname. Defaults to https://assets.digitalclimatestrike.net  
+     * Allow you to override the iFrame hostname. Defaults to https://assets.repair.org  
      */
-    iframeHost: 'https://assets.digitalclimatestrike.net', // @type {string}
+    iframeHost: 'https://assets.repair.org', // @type {string}
 
     /**
      * Prevents the widget iframe from loading Google Analytics. Defaults to
@@ -82,28 +66,17 @@ If you define an object called `REPAIR_ORG_OPTIONS` before including the widget 
     disableGoogleAnalytics: false, // @type {boolean}
 
     /**
-     * Always show the widget, even when someone has closed the widget and set the cookie on their device. 
+     * Always show the widget, except when someone has closed the widget and set the cookie on their device. 
      * Useful for testing. Defaults to false.
      */
     alwaysShowWidget: false, // @type {boolean}
+    
+    /** 
+     * Disable GeoIP state lookup.  Not 
+     */
+    disableGoogleAnalytics: false
 
-    /**
-     * Automatically makes the widget full page. Defaults to false.
-     */
-    forceFullPageWidget: false, // @type {boolean}
-    
-    /**
-    * For the full page widget, shows a close button "x" and hides the message about the site being 
-    * available tomorrow. Defaults to false.
-    */
-    showCloseButtonOnFullPageWidget: false, // @type {boolean}
-    
-    /**
-     * The date when the sticky footer widget should start showing on your web site.
-     * Note: the month is one integer less than the number of the month. E.g. 8 is September, not August.
-     * Defaults to new Date(2019, 7, 1) (August 1st, 2019).
-     */
-    footerDisplayStartDate: new Date() //@ type {Date object}
+*/
   };
 </script>
 <script src="https://assets.repair.org/widget.js" async></script>

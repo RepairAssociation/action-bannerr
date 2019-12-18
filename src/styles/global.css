@@ -6,6 +6,10 @@
     text-decoration: none;
 }
 
+iframe {
+    width: 100%;
+}
+
 *::before,
 *::after {
     box-sizing: inherit;

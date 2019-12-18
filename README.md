@@ -72,11 +72,10 @@ If you define an object called `REPAIR_ORG_OPTIONS` before including the widget 
     alwaysShowWidget: false, // @type {boolean}
     
     /** 
-     * Disable GeoIP state lookup.  Not 
+     * Disable GeoIP state lookup.  We make a call to a Repair Association server to do a GeoIP lookup on the IP address
+     * of the visitor so we can direct them to their state specific bill.  If you don't feel comfortable with this, you can disable.
      */
-    disableGoogleAnalytics: false
-
-*/
+    disableGeoIP: false
   };
 </script>
 <script src="https://assets.repair.org/widget.js" async></script>

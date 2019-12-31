@@ -8,7 +8,7 @@
 
   // user-configurable options
   var options = window.REPAIR_ORG_OPTIONS || {};
-  var iframeHost = 'https://assets.repair.org'; //'http://localhost:63342'; // 'https://assets.repair.org';
+  var iframeHost =  'https://assets.repair.org'; //'http://localhost:63342'; // 'https://assets.repair.org';
   var websiteName = options.websiteName || null;
   var disableGeoIP = !!options.disableGeoIP;
   var forceFullPageWidget = false; //!!options.forceFullPageWidget;
@@ -25,13 +25,13 @@
       callback({});
       return;
     }
-    let httpRequest = new XMLHttpRequest();
+    var httpRequest = new XMLHttpRequest();
 
     if (!httpRequest) {
       alert('Giving up :( Cannot create an XMLHTTP instance');
       return false;
     }
-    httpRequest.onreadystatechange = () => {
+    httpRequest.onreadystatechange = function () {
       if (httpRequest.readyState === XMLHttpRequest.DONE) {
         if (httpRequest.status === 200) {
           callback(JSON.parse(httpRequest.responseText));
@@ -46,7 +46,7 @@
 
   function getIframeSrc () {
     var src = iframeHost;
-    src += '/index.html?'; //'/action-banner/dist/index.html?';
+    src += '/index.html?'; // '/action-banner/dist/index.html?';
 
     var urlParams = [
       ['hostname', window.location.host],
@@ -74,12 +74,6 @@
     iframe.src = getIframeSrc();
     iframe.frameBorder = 0;
     iframe.allowTransparency = true;
-    iframe.onload = function () {
-      window.parent.postMessage({
-        action: 'resize',
-        REPAIR_ORG: true
-      }, '*');
-    };
     wrapper.appendChild(iframe);
     document.body.appendChild(wrapper);
     iframe.contentWindow.focus();
@@ -142,24 +136,25 @@
     if (!event.data.REPAIR_ORG) {
       return;
     }
+    /*
     if (event.origin.lastIndexOf(iframeHost, 0) !== 0) {
       return;
-    }
+    }*/
 
     switch (event.data.action) {
       case 'resize':
         var iframe = document.getElementById(IFRAME_ID);
         var wrapper = document.getElementById(DOM_ID);
-        iframe.height = iframe.contentWindow.document.body.scrollHeight + 'px';
-        iframe.setAttribute('style', 'width: 100%;');
-        wrapper.setAttribute('style', 'height:' + iframe.contentWindow.document.body.scrollHeight + 'px');
+
+        iframe.height = event.data.iframeHeight + 'px';
+        iframe.setAttribute('style', 'width: 100%; height: 100%;');
+        wrapper.setAttribute('style', 'height:' + event.data.iframeHeight + 'px');
         return;
       case 'maximize':
         return maximize();
       case 'closeButtonClicked':
         return closeWindow();
       case 'actionClicked':
-        console.log(buttonUrl);
         return navigateToLink(buttonUrl);
       case 'buttonClicked':
         return navigateToLink(buttonUrl);
@@ -182,7 +177,7 @@
     }
 
     makeStateRequest((response) => {
-      let state = response.State;
+      var state = response.State;
       currentState = response.region;
 
       if (!shouldShowBanner()) {
@@ -192,8 +187,8 @@
       createIframe();
 
       injectCSS('REPAIR_ORG_CSS',
-        '#' + DOM_ID + ' { position: fixed; right: 0; left: 0; bottom: 0px; width: 100%; z-index: 20000; -webkit-overflow-scrolling: touch; overflow: hidden; } ' //+
-        //'#' + DOM_ID + ' iframe { width: 100%; height: 100%; }'
+        '#' + DOM_ID + ' { position: fixed; right: 0; left: 0; bottom: 0px; width: 100%; z-index: 20000; -webkit-overflow-scrolling: touch; overflow: hidden; }  ' +
+        '#' + IFRAME_ID + ' { width: 100%; height: 100%; }'
       );
 
       // listen for messages from iframe

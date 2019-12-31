@@ -137,6 +137,10 @@ function initializeInterface () {
     initGoogleAnalytics();
     addTrackingEvents(query.hostname);
   }
+
+  postMessage('resize', {
+    iframeHeight: document.body.scrollHeight
+  });
 }
 
 document.addEventListener('DOMContentLoaded', initializeInterface);

@@ -11,7 +11,7 @@ full_page:
   ready:  'I&rsquo;m ready ➔'
   footer: 'You’ll be able to access this website tomorrow, <time id="dcs-tomorrow-date" datetime="2019-09-21">September 21</time>.'
 footer:
-  body: 'This website supports your Right to Repair<br>Show your support in our fight to let you fix the stuff you own.'
+  body: 'Our right to repair in Washington is under attack! We need your help to protect repair in our state.'
   ready: 'Yes, I&rsquo;m in. ➔'
 
 title: 'Right to Repair'

@@ -3,8 +3,7 @@
 .dcs-footer {
    background-color: var(--green);
    box-shadow: 0 0 1.6rem rgba(0, 0, 0, 0.2);
-   font-family: 'Katwijk Bold';
-   padding: 1.25rem 1.25rem 2rem;
+   font-family: 'BebasNeue';
    width: 100%;
    color: white;
 }
@@ -22,6 +21,14 @@
    flex-wrap: nowrap;
    margin: 0 auto;
    max-width: 50rem;
+   align-items: center;
+}
+
+.dcs-footer__container:before {
+   content: url('images/repair-banner-dirty.png');
+   margin-left: -193px;
+   margin-top: -2px;
+   height: 144px;
 }
 
 .dcs-footer__logo {
@@ -30,9 +37,12 @@
 }
 
 .dcs-footer__main {
-   flex: 0 0 70%;
+   flex: 1;
    margin-top: -.4rem; /* magic number: top text align to logo */
    margin: 0 1rem;
+
+   flex-direction: column;
+   text-align: center;
 }
 
 .dcs-footer__body {
@@ -50,6 +60,20 @@
    text-align: center;
 }
 
+.dcs-footer-content-top {
+   font-size: 48px;
+   margin-bottom: .5rem;
+   font-weight: 700;
+   text-shadow: 0px 2px 4px rgba(17, 22, 26, 0.1), 0px 1px 2px rgba(17, 22, 26, 0.1);
+}
+
+.dcs-footer-content-bottom {
+   font-size: 18px;
+   font-weight: 400;
+   text-transform: none;
+   font-family: 'Helvetica', sans-serif;
+}
+
 .dcs-footer__privacy-link a {
    color: #E0E0E0 !important;
    font-size: .8rem;
@@ -57,6 +81,15 @@
 
 /* Breakpoint */
 @media (max-width: 899px) {
+   .dcs-footer__container {
+      flex-direction: column;
+      padding: 2rem .5rem;
+   }
+
+   .dcs-footer__container:before {
+      display: none;
+   }
+
    .dcs-footer__logo_top {
       display: block !important;
       width: 70px;
@@ -79,10 +112,6 @@
 }
 
 @media (min-width: 900px) {
-
-   .dcs-footer {
-      padding: 2rem;
-   }
 
    .dcs-footer__container {
       max-width: 60rem;

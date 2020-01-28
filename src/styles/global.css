@@ -32,18 +32,38 @@ img {
 */
 
 @font-face {
-    font-family: "Greve";
+    font-family: 'BebasNeue';
+    font-weight: 100;
     font-style: normal;
-    src: url('./webfonts/greve-800-web.woff2') format('woff2'),
-    url('./webfonts/greve-800-web.woff') format('woff');
+    src: url('webfonts/BebasNeue/BebasNeue-Thin.otf') format('opentype');
 }
 
 @font-face {
-    font-family: "Katwijk Bold";
+    font-family: 'BebasNeue';
+    font-weight: 200;
     font-style: normal;
-    src: url('./webfonts/katwijk-mono-bold-web.woff2') format('woff2'),
-    url('./webfonts/katwijk-mono-bold-web.woff') format('woff'),
-    url('./webfonts/katwijk-mono-bold-web.ttf') format('truetype');
+    src: url('webfonts/BebasNeue/BebasNeue-Light.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'BebasNeue';
+    font-weight: 300;
+    font-style: normal;
+    src: url('webfonts/BebasNeue/BebasNeue-Book.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'BebasNeue';
+    font-weight: 400;
+    font-style: normal;
+    src: url('webfonts/BebasNeue/BebasNeue-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'BebasNeue';
+    font-weight: 700;
+    font-style: normal;
+    src: url('webfonts/BebasNeue/BebasNeue-Bold.otf') format('opentype');
 }
 
 /**
@@ -53,7 +73,7 @@ img {
 
 html, body {
     color: var(--grey);
-    font-family: 'Katwijk', monospace;
+    font-family: 'BebasNue', sans-serif;
     font-size: 100%; /* 16px base font */
     font-weight: bold;
 }

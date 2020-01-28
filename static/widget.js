@@ -8,7 +8,7 @@
 
   // user-configurable options
   var options = window.REPAIR_ORG_OPTIONS || {};
-  var iframeHost =  'https://assets.repair.org'; //'http://localhost:63342'; // 'https://assets.repair.org';
+  var iframeHost =  'http://localhost:63342'; // 'https://assets.repair.org';
   var websiteName = options.websiteName || null;
   var disableGeoIP = !!options.disableGeoIP;
   var forceFullPageWidget = false; //!!options.forceFullPageWidget;
@@ -46,7 +46,7 @@
 
   function getIframeSrc () {
     var src = iframeHost;
-    src += '/index.html?'; // '/action-banner/dist/index.html?';
+    src += '/action-banner/dist/index.html?'; //'/index.html?'; // '/action-banner/dist/index.html?';
 
     var urlParams = [
       ['hostname', window.location.host],

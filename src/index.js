@@ -138,9 +138,11 @@ function initializeInterface () {
     addTrackingEvents(query.hostname);
   }
 
-  postMessage('resize', {
-    iframeHeight: document.body.scrollHeight
-  });
+  setTimeout(() => {
+    postMessage('resize', {
+      iframeHeight: document.body.scrollHeight
+    });
+  }, 100);
 }
 
 document.addEventListener('DOMContentLoaded', initializeInterface);

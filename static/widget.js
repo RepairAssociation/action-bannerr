@@ -4,16 +4,18 @@
   var IFRAME_ID = 'REPAIR_ORG_IFRAME';
   var CLOSED_COOKIE = '_REPAIR_ORG_WIDGET_CLOSED_';
   var MS_PER_DAY = 86400000;
-  var states = [];
+  var states = [
+    'WA', 'GA', 'HI', 'MA', 'MN', 'NH', 'NJ', 'ME', 'OK', 'VA', 'VT', 'IL', 'NY', 'CO', 'MD', 'ID', 'PA'
+  ];
 
   // user-configurable options
   var options = window.REPAIR_ORG_OPTIONS || {};
-  var iframeHost =  'http://localhost:63342'; // 'https://assets.repair.org';
+  var iframeHost = 'http://localhost:63342'; // 'https://assets.repair.org';
   var websiteName = options.websiteName || null;
-  var disableGeoIP = !!options.disableGeoIP;
+  var disableGeoIP = false; //!!options.disableGeoIP;
   var forceFullPageWidget = false; //!!options.forceFullPageWidget;
   var cookieExpirationDays = parseFloat(options.cookieExpirationDays || 1);
-  var alwaysShowWidget = !!options.alwaysShowWidget;
+  var alwaysShowWidget = false; //!!options.alwaysShowWidget;
   var disableGoogleAnalytics = !!options.disableGoogleAnalytics;
   var showCloseButtonOnFullPageWidget = !!options.showCloseButtonOnFullPageWidget;
   var language = 'en';
@@ -28,7 +30,7 @@
     var httpRequest = new XMLHttpRequest();
 
     if (!httpRequest) {
-      alert('Giving up :( Cannot create an XMLHTTP instance');
+      console.error('Giving up :( Cannot create an XMLHTTP instance');
       return false;
     }
     httpRequest.onreadystatechange = function () {
@@ -46,7 +48,7 @@
 
   function getIframeSrc () {
     var src = iframeHost;
-    src += '/action-banner/dist/index.html?'; //'/index.html?'; // '/action-banner/dist/index.html?';
+    src += '/action-banner/dist/index.html?'; // '/index.html?'; //
 
     var urlParams = [
       ['hostname', window.location.host],
@@ -167,8 +169,8 @@
    * 2. The alwaysShowWidget is true in the config.
    * 3. We have enabled the banner for that state.
    */
-  function shouldShowBanner () {
-    return alwaysShowWidget || states.indexOf(currentState) !== -1;
+  function shouldShowBanner (state) {
+    return alwaysShowWidget || states.indexOf(state.toUpperCase()) !== -1;
   }
 
   function initializeInterface () {
@@ -178,9 +180,9 @@
 
     makeStateRequest((response) => {
       var state = response.State;
-      currentState = response.region;
+      var region = response.Region || 'global';
 
-      if (!shouldShowBanner()) {
+      if (!shouldShowBanner(region)) {
         return;
       }
 

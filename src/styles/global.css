@@ -78,6 +78,10 @@ html, body {
     font-weight: bold;
 }
 
+body, footer, html {
+    height: 100%;
+}
+
 .hidden {
     display: none;
 }

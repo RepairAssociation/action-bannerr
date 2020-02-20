@@ -15,7 +15,7 @@
   var disableGeoIP = false; //!!options.disableGeoIP;
   var forceFullPageWidget = false; //!!options.forceFullPageWidget;
   var cookieExpirationDays = parseFloat(options.cookieExpirationDays || 1);
-  var alwaysShowWidget = false; //!!options.alwaysShowWidget;
+  var alwaysShowWidget = !!options.alwaysShowWidget;
   var disableGoogleAnalytics = !!options.disableGoogleAnalytics;
   var showCloseButtonOnFullPageWidget = !!options.showCloseButtonOnFullPageWidget;
   var language = 'en';

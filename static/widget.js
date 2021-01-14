@@ -5,14 +5,14 @@
     var CLOSED_COOKIE = '_REPAIR_ORG_WIDGET_CLOSED_';
     var MS_PER_DAY = 86400000;
     var states = [
-        'WA', 'GA', 'HI', 'MA', 'MN', 'NH', 'NJ', 'ME', 'OK', 'VA', 'VT', 'IL', 'NY', 'CO', 'MD', 'ID', 'PA'
+        'WA', 'GA', 'HI', 'MA', 'MN', 'NH', 'NJ', 'ME', 'OK', 'VA', 'VT', 'IL', 'NY', 'CO', 'MD', 'ID', 'PA', 'DE',
+        'FL', 'SC', 'WY', 'AK', 'AL', 'CA', 'NE', 'OR', 'LA', 'MO', 'MT'
     ];
 
     // user-configurable options
     var options = window.REPAIR_ORG_OPTIONS || {};
     var iframeHost = 'https://assets.repair.org'; // 'http://localhost:63342'; //
     var websiteName = options.websiteName || null;
-    var disableGeoIP = false; //!!options.disableGeoIP;
     var forceFullPageWidget = false; //!!options.forceFullPageWidget;
     var cookieExpirationDays = parseFloat(options.cookieExpirationDays || 1);
     var alwaysShowWidget = !!options.alwaysShowWidget;

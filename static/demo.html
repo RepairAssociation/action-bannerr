@@ -14,20 +14,15 @@
     }
   </style>
   <script>
-    var fullPage = window.location.toString().indexOf('fullPage') !== -1;
-    var showCloseButton = window.location.toString().indexOf('showCloseButton') !== -1;
-
     var urlParams = new URLSearchParams(window.location.search);
     var language = urlParams.get('language') ? urlParams.get('language') : 'en';
 
     var REPAIR_ORG_OPTIONS = {
-      disableGeoIP: false,
-      alwaysShowWidget: true,
       websiteName: 'Demo',
       language: 'en'
     };
   </script>
-  <script src="./widget.js"></script>
+  <script async src="./widget.js"></script>
 </head>
 <body>
 <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</h1>

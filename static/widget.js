@@ -5,8 +5,8 @@
     var CLOSED_COOKIE = '_REPAIR_ORG_WIDGET_CLOSED_';
     var MS_PER_DAY = 86400000;
     var states = [
-        'WA', 'GA', 'HI', 'MA', 'MN', 'NH', 'NJ', 'ME', 'OK', 'VA', 'VT', 'IL', 'NY', 'CO', 'MD', 'ID', 'PA', 'DE',
-        'FL', 'SC', 'WY', 'AK', 'AL', 'CA', 'NE', 'OR', 'LA', 'MO', 'MT'
+        'WA', 'MA', 'NH', 'NJ', 'OK', 'VT', 'MD', 'DE',
+        'FL', 'SC', 'OR', 'MT'
     ];
 
     // user-configurable options

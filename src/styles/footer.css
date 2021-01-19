@@ -6,6 +6,7 @@
    font-family: 'BebasNeue';
    width: 100%;
    color: white;
+   overflow: hidden;
 }
 
 .dcs-footer__close {

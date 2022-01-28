@@ -5,16 +5,26 @@
     var CLOSED_COOKIE = '_REPAIR_ORG_WIDGET_CLOSED_';
     var MS_PER_DAY = 86400000;
     var states = [
+        'CO',
+        'FL',
+        'HI',
+        'IL',
+        'CA',
         'MA',
+        'MO',
+        'NE',
         'NJ',
+        'NY',
+        'OK',
         'PA',
-        'WA',
-        'CA'
+        'VA',
+        'VT',
+        'WA'
     ];
 
     // user-configurable options
     var options = window.REPAIR_ORG_OPTIONS || {};
-    var iframeHost = 'https://assets.repair.org'; 
+    var iframeHost = 'https://assets.repair.org';
     //var iframeHost = 'http://localhost:63342';
     var websiteName = options.websiteName || null;
     var forceFullPageWidget = false; //!!options.forceFullPageWidget;

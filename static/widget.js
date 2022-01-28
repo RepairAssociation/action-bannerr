@@ -7,12 +7,15 @@
     var states = [
         'MA',
         'NJ',
-        'PA'
+        'PA',
+        'WA',
+        'CA'
     ];
 
     // user-configurable options
     var options = window.REPAIR_ORG_OPTIONS || {};
-    var iframeHost = 'https://assets.repair.org'; // 'http://localhost:63342'; //
+    var iframeHost = 'https://assets.repair.org'; 
+    //var iframeHost = 'http://localhost:63342';
     var websiteName = options.websiteName || null;
     var forceFullPageWidget = false; //!!options.forceFullPageWidget;
     var cookieExpirationDays = parseFloat(options.cookieExpirationDays || 1);
@@ -21,11 +24,12 @@
     var showCloseButtonOnFullPageWidget = !!options.showCloseButtonOnFullPageWidget;
     var language = 'en';
     var currentState = null;
-    var buttonUrl = 'https://www.repair.org/membership';
+    var buttonUrl = 'https://www.repair.org/stand-up';
 
     function getIframeSrc() {
         var src = iframeHost;
-        src += '/index.html?'; //'/action-banner/dist/index.html?'; //
+        //src += '/action-banner/dist/index.html?';
+        src += '/index.html?';
 
         var urlParams = [
             ['hostname', window.location.host],
@@ -182,7 +186,7 @@
         document.removeEventListener('DOMContentLoaded', initializeInterface);
 
         if (!state) {
-          buttonUrl = 'https://repair.org/membership';
+          buttonUrl = 'https://repair.org/stand-up';
         } else {
           buttonUrl = `https://${state.toLowerCase().replace(' ', '')}.repair.org/`;
         }
@@ -190,7 +194,6 @@
       } catch (err) {
         console.error(err);
       }
-
     }
 
     // Wait for DOM content to load.

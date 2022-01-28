@@ -143,6 +143,15 @@ function initializeInterface () {
       iframeHeight: document.body.scrollHeight
     });
   }, 100);
+
+  var ro = new ResizeObserver( entries => {
+    postMessage('resize', {
+      iframeHeight: document.querySelector('.dcs-footer__container').scrollHeight
+    });
+  });
+
+  // Observe one or multiple elements
+  ro.observe(document.body);
 }
 
 document.addEventListener('DOMContentLoaded', initializeInterface);

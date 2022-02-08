@@ -139,7 +139,7 @@
                 var wrapper = document.getElementById(DOM_ID);
 
                 iframe.height = event.data.iframeHeight + 'px';
-                iframe.setAttribute('style', 'width: 100%; height: 100%;');
+                iframe.setAttribute('style', 'width: 100%; height: 100%; min-height: 179px');
                 wrapper.setAttribute('style', 'height:' + event.data.iframeHeight + 'px');
                 return;
             case 'maximize':

@@ -7,19 +7,15 @@
     var states = [
         'CO',
         'FL',
-        'HI',
-        'IL',
         'CA',
+	'CT',
         'MA',
-        'MO',
+	'DE',
         'NE',
-        'NJ',
         'NY',
-        'OK',
         'PA',
-        'VA',
         'VT',
-        'WA'
+        'MN'
     ];
 
     // user-configurable options

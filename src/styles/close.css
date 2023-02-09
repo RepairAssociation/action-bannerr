@@ -16,7 +16,7 @@
 
   &::before,
   &::after {
-    background-color: #fff;
+    background-color: rgb(31, 41, 55);
     content: '';
     height: 1.2rem;
     position: absolute;
@@ -35,12 +35,8 @@
   &:focus {
     &::before,
     &::after {
-      background-color: #fff;
+      background-color: rgb(31, 41, 55);
     }
-  }
-
-  &:focus {
-    outline: 2px dotted var(--black);
   }
 }
 

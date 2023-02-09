@@ -5,3 +5,4 @@ npm-debug.log
 dist
 /digital-climate-strike.iml
 deploy.sh
+*.sw*

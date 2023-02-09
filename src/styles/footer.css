@@ -1,34 +1,43 @@
 /* footer */
 
 .dcs-footer {
-   background-color: var(--green);
-   box-shadow: 0 0 1.6rem rgba(0, 0, 0, 0.2);
-   font-family: 'BebasNeue';
+   font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';
    width: 100%;
-   color: white;
+   color: rgb(31, 41, 55);
    overflow: hidden;
+   padding-top: 15px;
 }
 
 .dcs-footer__close {
    height: 3rem;
    position: absolute;
    right: 0;
-   top: 0;
+   top: 0px;
    width: 3rem;
 }
 
 .dcs-footer__container {
+   box-shadow: 0 -10px 15px -3px rgb(0 0 0 / 0.1),0 -4px 6px -4px rgb(0 0 0 / 0.1);
+   background-color: #fff;
+}
+
+.dcs-footer__container-inner {
+   max-width: 1024px;
    display: flex;
    flex-wrap: nowrap;
    margin: 0 auto;
-   max-width: 50rem;
    align-items: center;
-}
-
-.dcs-footer__container:before {
-   content: url('images/repair-banner-dirty.png');
-   opacity: .8;
-   margin-left: -150px;
+   height: 180px;
+   overflow: hidden;
+   position: relative;
+   &:after {
+      content: url('images/iphone14bg.png');
+      opacity: 1;
+      position: absolute;
+      right: 190px;
+      top: 40px;
+      z-index: 0;
+   }
 }
 
 .dcs-footer__logo {
@@ -38,21 +47,20 @@
 
 .dcs-footer__main {
    flex: 1;
-   margin-top: -.4rem; /* magic number: top text align to logo */
-   margin: 0 1rem;
-
    flex-direction: column;
-   text-align: center;
+   text-align: left;
+   position: relative;
+   z-index: 4;
 }
 
 .dcs-footer__body {
-   color: white;
-   font: normal .875rem/1rem 'Katwijk Bold', Courier, sans-serif;
    max-width: 26rem;
 }
 
 .dcs-footer__action {
-   margin: 1rem 0 0;
+   margin-right: 1rem;
+   position: relative;
+   z-index: 4;
 }
 
 .dcs-footer__privacy-link {
@@ -61,71 +69,53 @@
 }
 
 .dcs-footer-content-top {
-   font-size: 48px;
+   font-size: 38px;
    margin-bottom: .5rem;
    font-weight: 700;
-   text-shadow: 0px 2px 4px rgba(17, 22, 26, 0.1), 0px 1px 2px rgba(17, 22, 26, 0.1);
+}
+
+.dcs-footer-highlight {
+   color: #3b82f6;
 }
 
 .dcs-footer-content-bottom {
-   font-size: 18px;
+   font-size: 24px;
    font-weight: 400;
    text-transform: none;
-   font-family: 'Helvetica', sans-serif;
 }
 
 .dcs-footer__privacy-link a {
-   color: #E0E0E0 !important;
+   color: rgb(31, 41, 55) !important;
    font-size: .8rem;
 }
 
 /* Breakpoint */
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
+   .dcs-footer__main {
+      margin-bottom: 1rem;
+      text-align: center;
+   }
+
    .dcs-footer__container {
+      padding: 1rem;
       flex-direction: column;
-      padding: 3.5rem .5rem 1rem;
       box-sizing: border-box;
    }
 
    .dcs-footer__action {
-      margin-top: 2rem;
+      margin-top: 1rem;
    }
 
-   .dcs-footer__container:before {
+   .dcs-footer__container {
+      height: auto;
+   }
+
+   .dcs-footer__container::after {
       display: none;
-   }
-
-   .dcs-footer__logo_top {
-      display: block !important;
-      width: 70px;
-      margin-bottom: 14px;
-   }
-
-   .dcs-footer__logo {
-      display: none;
-   }
-
-   .dcs-footer__main {
-      flex: 0 0 100%;
-      margin: 0;
-   }
-
-   .dcs-button {
-      display: block;
-      margin: 0 auto 12px;
    }
 }
 
-@media (min-width: 1025px) {
-
-   .dcs-footer__container {
-      max-width: 60rem;
-   }
-
-   .dcs-footer__logo {
-      flex: 0 0 10%;
-   }
-
+@media (min-width: 1024px) {
    .dcs-footer__main {
       flex: 1;
       display: flex;
@@ -139,7 +129,6 @@
 
    .dcs-footer__action {
       display: inline-block;
-      margin: 0 0 0 1rem;
    }
 }
 

@@ -4,18 +4,21 @@
     var IFRAME_ID = 'REPAIR_ORG_IFRAME';
     var CLOSED_COOKIE = '_REPAIR_ORG_WIDGET_CLOSED_';
     var MS_PER_DAY = 86400000;
-    var states = [
-        'MA',
-        'NY',
-        'PA',
-        'MN'
-    ];
 
     // user-configurable options
     var options = window.REPAIR_ORG_OPTIONS || {};
     var iframeHost = 'https://assets.repair.org';
-    //var iframeHost = 'http://localhost:63342';
+    //var iframeHost = 'http://0.0.0.0:8080';
     var websiteName = options.websiteName || null;
+    var states = options.states || [
+        'MA',
+        'NY',
+        'PA',
+        'MN',
+        'WA',
+        'CA'
+    ];
+
     var forceFullPageWidget = false; //!!options.forceFullPageWidget;
     var cookieExpirationDays = parseFloat(options.cookieExpirationDays || 1);
     var alwaysShowWidget = !!options.alwaysShowWidget;
@@ -127,9 +130,11 @@
                 var iframe = document.getElementById(IFRAME_ID);
                 var wrapper = document.getElementById(DOM_ID);
 
-                iframe.height = event.data.iframeHeight + 'px';
-                iframe.setAttribute('style', 'width: 100%; height: 100%; min-height: 179px');
-                wrapper.setAttribute('style', 'height:' + event.data.iframeHeight + 'px');
+                // space for the shadow
+                var iframeHeight = (event.data.iframeHeight + 15);
+                iframe.height = iframeHeight + 'px';
+                iframe.setAttribute('style', 'width: 100%; height: 100%; min-height: 200px');
+                wrapper.setAttribute('style', 'height:' + iframeHeight + 'px');
                 return;
             case 'maximize':
                 return maximize();

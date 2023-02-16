@@ -12,8 +12,9 @@
    height: 3rem;
    position: absolute;
    right: 0;
-   top: 0px;
+   top: 0;
    width: 3rem;
+   z-index: 10;
 }
 
 .dcs-footer__container {
@@ -30,11 +31,12 @@
    height: 180px;
    overflow: hidden;
    position: relative;
+
    &:after {
       content: url('images/iphone14bg.png');
       opacity: 1;
       position: absolute;
-      right: 190px;
+      right: 160px;
       top: 40px;
       z-index: 0;
    }
@@ -50,7 +52,7 @@
    flex-direction: column;
    text-align: left;
    position: relative;
-   z-index: 4;
+   z-index: 6;
 }
 
 .dcs-footer__body {
@@ -60,7 +62,7 @@
 .dcs-footer__action {
    margin-right: 1rem;
    position: relative;
-   z-index: 4;
+   z-index: 7;
 }
 
 .dcs-footer__privacy-link {
@@ -69,7 +71,7 @@
 }
 
 .dcs-footer-content-top {
-   font-size: 38px;
+   font-size: 36px;
    margin-bottom: .5rem;
    font-weight: 700;
 }
@@ -96,21 +98,18 @@
       text-align: center;
    }
 
-   .dcs-footer__container {
+   .dcs-footer__container-inner {
       padding: 1rem;
       flex-direction: column;
       box-sizing: border-box;
+      height: auto;
    }
 
    .dcs-footer__action {
       margin-top: 1rem;
    }
 
-   .dcs-footer__container {
-      height: auto;
-   }
-
-   .dcs-footer__container::after {
+   .dcs-footer__container-inner::after {
       display: none;
    }
 }

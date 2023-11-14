@@ -12,11 +12,8 @@
     var websiteName = options.websiteName || null;
     var states = options.states || [
         'MA',
-        'NY',
         'PA',
-        'MN',
-        'WA',
-        'CA'
+        'WA'
     ];
 
     var forceFullPageWidget = false; //!!options.forceFullPageWidget;

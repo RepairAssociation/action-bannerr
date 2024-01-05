@@ -18,7 +18,7 @@
 
     var forceFullPageWidget = false; //!!options.forceFullPageWidget;
     var cookieExpirationDays = parseFloat(options.cookieExpirationDays || 1);
-    var alwaysShowWidget = !!options.alwaysShowWidget;
+    var alwaysShowWidget = true || !!options.alwaysShowWidget;
     var disableGoogleAnalytics = !!options.disableGoogleAnalytics;
     var showCloseButtonOnFullPageWidget = !!options.showCloseButtonOnFullPageWidget;
     var language = 'en';
@@ -160,7 +160,7 @@
       }
 
       try {
-        let response = await fetch('https://us-central1-callpower-repair-1548316784218.cloudfunctions.net/geoip-go');
+        /*let response = await fetch('https://us-central1-callpower-repair-1548316784218.cloudfunctions.net/geoip-go');
 
         if (response.status >= 400) {
           throw new Error("Bad response from server");
@@ -169,7 +169,8 @@
         response = await response.json();
 
         let state = response.State;
-        let region = response.Region || 'global';
+        let region = response.Region || 'global';*/
+          let region = 'global';
 
         if (!shouldShowBanner(region)) {
           return;
@@ -187,7 +188,7 @@
         document.removeEventListener('DOMContentLoaded', initializeInterface);
 
         if (!state) {
-          buttonUrl = 'https://repair.org/stand-up';
+          buttonUrl = 'https://ftc.repair.org/';
         } else {
           buttonUrl = `https://${state.toLowerCase().replace(' ', '')}.repair.org/`;
         }

@@ -23,7 +23,7 @@
     var showCloseButtonOnFullPageWidget = !!options.showCloseButtonOnFullPageWidget;
     var language = 'en';
     var currentState = null;
-    var buttonUrl = 'https://www.repair.org/stand-up';
+    var buttonUrl = 'https://ftc.repair.org';
 
     function getIframeSrc() {
         var src = iframeHost;

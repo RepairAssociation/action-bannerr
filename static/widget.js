@@ -11,9 +11,29 @@
     //var iframeHost = 'http://0.0.0.0:8080';
     var websiteName = options.websiteName || null;
     var states = options.states || [
+        'AK',
+        'AZ',
+        'CO',
+        'HI',
+        'IL',
+        'IN',
         'MA',
+        'ME',
+        'MI',
+        'MS',
+        'NH',
+        'NJ',
+        'NY',
+        'OH',
+        'OK',
+        'OR',
         'PA',
-        'WA'
+        'RI',
+        'TN',
+        'VT',
+        'WA',
+        'WV',
+        'MN'
     ];
 
     var forceFullPageWidget = false; //!!options.forceFullPageWidget;
